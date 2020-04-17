@@ -160,13 +160,11 @@ function sendNextChunk(a) {
 
 function initContent(io) {
     io.println("\r\n\
-Welcome to Web Device CLI V0.1.0 (03/19/2019)\r\n\
-Copyright (C) 2019  makerdiary.\r\n\
+Welcome to Frodo Control CLI V0.1.0\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
+Many thanks to makerdiary on whose project this interface is based upon (https://github.com/makerdiary/web-device-cli).\r\n\
 \r\n\
-  * Source: https://github.com/makerdiary/web-device-cli\r\n\
-  * Live:   https://makerdiary.github.io/web-device-cli\r\n\
 ");
 }
 
