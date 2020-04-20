@@ -1,63 +1,43 @@
-# Web Device CLI
+# Web Device CLI for Frodo
 
-A Web Command Line Interface via NUS (Nordic UART Service) using [Web Bluetooth](https://webbluetoothcg.github.io/web-bluetooth/).
+A Web Command Line Interface for Frodo via NUS (Nordic UART Service) using [Web
+Bluetooth](https://webbluetoothcg.github.io/web-bluetooth/).
 
 [![](img/web-device-cli-chrome-desktop.png)](https://youtu.be/i6OgX4civrM)
 
+The website loads javascript code provide you with a Browser Terminal that uses
+your local computer's Bluetooth adapter to connect to Frodo. All of this without
+installing any extra software!
+
+This project is based on a fork of the Web Device CLI from
+[https://github.com/makerdiary/web-device-cli]. Apart from changing the look and
+feel of the terminal it adds some minor fix so the backspace key is correctly
+transmitted to the Nordic CLI component via BLE NUS.
+
 ## Prerequisites
+* Frodo flashed with some reccent firmware.
+* A browser that supports Web Bluetooth. At the time of writing Google Chrome on
+Windows is the only Browser that supports it out of the box. On Linux Google
+Chrome can be configured (with som experimental feature flag) to enable Web
+Bluetooth as well.
+* A Computer with a Bluetooth Transceiver i.e. any modern Laptop (or just by
+  some cheap Bluetooth USB dongle that support BLE).
 
-* nRF52 based board, see [Supported Boards](#supported-boards) for more information 
-* A Web Bluetooth enabled [browser](https://github.com/WebBluetoothCG/web-bluetooth/blob/master/implementation-status.md): Chrome 56+, etc.
-* [BLE CLI firmware](./firmware) with NUS enabled
+## How to Use the CLI
+You can immediately start to use the Web CLI as this repository is live hosted under the following URL:
 
-## Try it out
-This repo has a live web page hosted here:
+**[https://meggiman.github.io/frodo_cli](https://meggiman.github.io/frodo_cli)**
 
-**[https://makerdiary.github.io/web-device-cli](https://makerdiary.github.io/web-device-cli)**
+Open the URL, hit connect in the upper left corner. If your Browser supports Web
+Bluetooth you will see a small Pop-up window with nearby bluetooth low energy
+devices. Search the list for the entry "Frodo" and click connect. Your browser
+will connect to Frodo and you can immediately start interacting with it via the
+console. 
 
-## Flashing CLI firmware
-
-The pre-built CLI firmwares can be found in the [firmware](./firmware) folder. Follow the commands below to flash the firmware:
-
-```
-# For nRF52832-MDK board
-pyocd flash -t nrf52 ble_app_cli_nrf52832_mdk_s132.hex
-
-# For nRF52840-MDK board
-pyocd flash -t nrf52840 ble_app_cli_nrf52840_mdk_s140.hex
-
-# For nRF52840-MDK USB Dongle
-nrfutil dfu usb-serial -pkg s140_nrf52_6.1.0_softdevice_dfu_pkg.zip -p <Serial port>
-nrfutil dfu usb-serial -pkg ble_app_cli_nrf52840_mdk_usb_dongle_app.zip -p <Serial port>
-
-# For Pitaya Go board
-nrfutil dfu usb-serial -pkg s140_nrf52_6.1.0_softdevice.zip -p <Serial port>
-nrfutil dfu usb-serial -pkg pitaya_cli_v1.0.0.zip -p <Serial port>
-
-```
-
-## Building CLI firmware
-
-The BLE CLI source code is located here. You can check it out and build your own firmware:
-
-* [nrf52832-mdk/ble_app_cli](https://github.com/makerdiary/nrf52832-mdk/tree/master/examples/nrf5-sdk/ble_app_cli)
-* [nrf52840-mdk/ble_app_cli](https://github.com/makerdiary/nrf52840-mdk/tree/master/examples/nrf5-sdk/ble_app_cli)
-* [nrf52840-mdk-usb-dongle/ble_app_cli](https://github.com/makerdiary/nrf52840-mdk-usb-dongle/tree/master/examples/nrf5-sdk/ble_app_cli)
-* [pitaya-go/pitaya-cli](https://github.com/makerdiary/pitaya-go/tree/master/examples/pitaya_cli)
-
-See [this post](https://blog.makerdiary.com/how-to-use-nrf5-sdk-with-arm-gcc/) to set up your development environment with nRF5 SDK and ARM GCC.
-
-
-## Supported Boards
-We are continually adding board-specific support as documented below.
-
-* [nRF52832-MDK](https://wiki.makerdiary.com/nrf52832-mdk)
-* [nRF52840-MDK](https://wiki.makerdiary.com/nrf52840-mdk/)
-* [nRF52840-MDK USB Dongle](https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle)
-* [Pitaya Go](https://wiki.makerdiary.com/pitaya-go)
-
-## Contributing
-We would love for you to contribute to this project and help make it even better than it is today.
+Enter `help` <kbd>Enter</kbd> to list the most important available commands. Use
+tab completion to quickly enter commands with auto-complete. Most commands are
+documented and its documentation can be shown by entering the command followed
+by `-h` (e.g. `bioz config_meas -h`).
 
 ## MIT License
 
